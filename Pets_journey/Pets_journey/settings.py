@@ -44,7 +44,8 @@ THIRD_PARTY = [
 ]
 
 CUSTOM_APP = [
-    'users' , 
+    'users' ,
+    'owners', 
     'pets' ,
 ]
 
