@@ -140,3 +140,10 @@ STATICFILES_DIRS = [
 
 AUTH_USER_MODEL = "users.User" 
 
+
+ALLOWED_HOSTS = [
+    'redaloukil.pythonanywhere.com',
+]
+
+
+
