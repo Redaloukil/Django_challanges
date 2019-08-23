@@ -15,7 +15,7 @@ DOG = (
 class Pet(models.Model):
     owner = models.ForeignKey(Owner , on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    birth_day = models.DateField()
+    
 
 class Cat(Pet):
     pass
