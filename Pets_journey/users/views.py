@@ -4,24 +4,34 @@ from django.shortcuts import render ,redirect
 from django.contrib import auth 
 from users.models import User
 from django.contrib import messages
+from .forms import LoginForm , SignupForm
+from django.views.decorators.csrf import csrf_exempt
 
 
 
 #LOGIN 
+@csrf_exempt
 def login(request):
     if request.method == "POST" :
-        username = request.POST["username"]
-        password = request.POST["password"]
-        user = auth.authenticate(request , username = username , password = password)
-        if user is not None :
-            auth.login(request, user)
-            messages.success(request ,"welcome{}".format(user.username))
-            return redirect("home")
-        else:
-            messages.error(request ,"wrong username or password ")
-            return render(request,"login.html",{})
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
+            user = auth.authenticate(request , username = username , password = password)
+            if user is not None :
+                auth.login(request, user)
+                messages.success(request ,"welcome{}".format(user.username))
+                return redirect("home")
+            else:
+                messages.warning(request ,"wrong username or password ")
+                return render(request,"login.htm",{})
+        else: 
+            messages.warning(request ,"Please Verify you credentials")
+            form = LoginForm()
+            return render(request,"login.htm",{"form" : form})
     else:
-        return render(request,"login.html")
+        form = LoginForm()
+        return render(request,"login.htm" , {"form" : form})
 
 
 def register(request):
@@ -32,21 +42,22 @@ def register(request):
         confirm_password = request.POST.get("confirm_password")
         
         if User.objects.filter(username = username).exists():
-            messages.error(request,"this username exists")
-            return render(request , "register.html")
+            messages.warning(request,"this username exists")
+            return render(request , "register.htm")
         if User.objects.filter(email = email).exists():
             messages.error(request,"this email exists")
-            return render(request , "register.html")
+            return render(request , "register.htm")
         if password != confirm_password:
             messages.error(request,"this email exists")
-            return render(request , "register.html")
+            return render(request , "register.htm")
         
         user = User.objects.create_user(username , email = email , password=password, is_staff= True , is_superuser = True)
         user = auth.authenticate(request , username= username , password=password)
         messages.success(request , "think you for registration")
         return redirect("home")
     else:
-        return render(request,"register.html")
+        form = SignupForm()
+        return render(request,"signup.htm")
 
 def logout(request):
     auth.logout(request)

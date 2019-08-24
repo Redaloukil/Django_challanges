@@ -1,0 +1,23 @@
+body {
+    font-family: source sans pro,sans-serif!important;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #373a3c;
+    background-color: #fff;
+}
+
+.navbar-brand {
+    color: #3498db!important;
+    font-weight:700;
+    font-size:25px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(0,0,0,.5)!important;
+}
+
+.navbar-nav .nav-link {
+    display: block;
+    padding-top: .425rem;
+    padding-bottom: .425rem;
+}

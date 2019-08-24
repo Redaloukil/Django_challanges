@@ -1,3 +1,6 @@
 from django.db import models
 
-# Create your models here.
+
+class BaseModel(models.Model):
+    published_at = models.DateField()
+    updated_at = models.DateField()

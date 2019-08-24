@@ -1,0 +1,44 @@
+{% extends 'base.htm' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-xs-12">
+            <h1 class="text-xs-center">Sign In</h1>
+            <p class="text-xs-center">
+                <a href="/register">Need an account?</a>
+            </p>
+            <form action="." method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+                {% if field.errors %}
+                <div class="form-group">
+                    {{ field }}
+                </div>
+
+                {% else %}
+                  <div class="form-group">
+                      {{ field }}
+                  </div>
+
+              {% endif %}
+
+            {%endfor%}
+            <div class="form-group">
+              <button type="submit" class="btn btn-info">Submit</button>
+            </div>
+	</form>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock content %}

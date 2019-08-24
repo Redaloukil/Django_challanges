@@ -23,12 +23,12 @@ from users.views import (
 )
 
 urlpatterns = [
-    path('/' , home),
+    path('' , home , name="home"),
     
     # ## Auth
-    # path('/login' , login),
-    # path('/logout' , logout),
-    # path('/register' , register),
+    path('login/' , login , name="login"),
+    path('logout/' , logout , name="logout"),
+    path('signup/' , register, name="signup"),
     
     ## Admin
     path('admin/', admin.site.urls),
