@@ -15,11 +15,28 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path ,include
+from .views import home
+from users.views import (
+    login,
+    logout,
+    register,
+)
 
 urlpatterns = [
+    path('/' , home),
+    
+    ## Auth
+    path('/login' , login),
+    path('/logout' , logout),
+    path('/register' , register),
+    
+    ## Admin
     path('admin/', admin.site.urls),
+    
     # Custom urls
     path('users/',include('users.urls')),
     path('owners/',include('owners.urls')),
     path('pets/',include('pets.urls')),
+
+
 ]
