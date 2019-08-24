@@ -1,5 +1,7 @@
 from django.db import models
-from owners.models import Owner
+from users.models import User
+
+from datetime import datetime    
 
 
 # Create your models here.
@@ -13,12 +15,15 @@ DOG = (
     ('1' , 'type1'),
 )
 class Pet(models.Model):
-    owner = models.ForeignKey(Owner , on_delete=models.CASCADE)
+    owner = models.ForeignKey(User , on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
+    date = models.DateField(auto_now_add=False, blank=True)
     
 
 class Cat(Pet):
-    pass
+    def __str__(self):
+        return self.name + ' ' + self.owner.username
 
 class Dog(Pet):
-    pass
+    def __str__(self):
+        return self.name + ' ' + self.owner.username

@@ -12,6 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 #LOGIN 
 @csrf_exempt
 def login(request):
+    
     if request.method == "POST" :
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -24,7 +25,8 @@ def login(request):
                 return redirect("home")
             else:
                 messages.warning(request ,"wrong username or password ")
-                return render(request,"login.htm",{})
+                form = LoginForm()
+                return render(request,"login.htm",{"form" : form})
         else: 
             messages.warning(request ,"Please Verify you credentials")
             form = LoginForm()
@@ -36,29 +38,34 @@ def login(request):
 
 def register(request):
     if request.method == "POST" :
-        username = request.POST.get("username")
-        email = request.POST.get("email")
-        password = request.POST.get("password")
-        confirm_password = request.POST.get("confirm_password")
-        
-        if User.objects.filter(username = username).exists():
-            messages.warning(request,"this username exists")
-            return render(request , "register.htm")
-        if User.objects.filter(email = email).exists():
-            messages.error(request,"this email exists")
-            return render(request , "register.htm")
-        if password != confirm_password:
-            messages.error(request,"this email exists")
-            return render(request , "register.htm")
-        
-        user = User.objects.create_user(username , email = email , password=password, is_staff= True , is_superuser = True)
-        user = auth.authenticate(request , username= username , password=password)
-        messages.success(request , "think you for registration")
-        return redirect("home")
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            first_name = form.cleaned_data["first_name"]
+            last_name = form.cleaned_data["last_name"]
+            password = form.cleaned_data["password"]
+            confirm_password = form.cleaned_data["password"]
+                
+            if User.objects.filter(username = username).exists():
+                messages.warning(request,"this username exists")
+                form = SignupForm()
+                return render(request , "signup.htm" , {'form':form})
+            
+            if password != confirm_password:
+                messages.error(request,"this email exists")
+                form = SignupForm
+                return render(request , "signup.htm", {'form':form})
+            user = User.objects.create_user(username=username,first_name=first_name , last_name=last_name,password=password)
+            user = auth.authenticate(request , username= username , password=password)
+            messages.success(request , "think you for registration")
+            return redirect("dashbord")
     else:
         form = SignupForm()
-        return render(request,"signup.htm")
+        return render(request,"signup.htm" , {"form" :form})
 
 def logout(request):
     auth.logout(request)
     return redirect("home")
+
+def dashbord(request):
+    return render(request , 'dashbord.htm')
