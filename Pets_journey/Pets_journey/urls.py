@@ -25,10 +25,10 @@ from users.views import (
 urlpatterns = [
     path('/' , home),
     
-    ## Auth
-    path('/login' , login),
-    path('/logout' , logout),
-    path('/register' , register),
+    # ## Auth
+    # path('/login' , login),
+    # path('/logout' , logout),
+    # path('/register' , register),
     
     ## Admin
     path('admin/', admin.site.urls),
