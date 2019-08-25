@@ -7,15 +7,17 @@ from users.views import (
     login,
     logout,
     register,
+    dashbord
 )
 
 urlpatterns = [
     path('' , home , name="home"),
-    
+    path('' , dashbord , name="dashbord"),
     # ## Auth
     path('login/' , login , name="login"),
     path('logout/' , logout , name="logout"),
     path('signup/' , register, name="signup"),
+    
     
     ## Admin
     path('admin/', admin.site.urls),

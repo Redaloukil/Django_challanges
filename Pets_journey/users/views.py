@@ -68,4 +68,4 @@ def logout(request):
     return redirect("home")
 
 def dashbord(request):
-    return render(request , 'dashbord.htm')
+    return render(request , 'home.htm')

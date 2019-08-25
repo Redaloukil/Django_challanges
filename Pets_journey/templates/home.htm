@@ -3,4 +3,8 @@
 
 {% block content %}
 <h1>Crowdbotics Test Application</h1>
+{% if request.user.is_authenticated %}
+    <h3>{{request.user.username}}</h3>
+
+{% endif %}
 {% endblock %}
