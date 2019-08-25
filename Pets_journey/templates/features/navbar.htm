@@ -13,10 +13,17 @@
                 </li>
                     {% if user.is_authenticated %}
                         <li class="nav-item active">
-                            <a class="nav-link" href="{% url 'home' %}">Dashbord <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{% url 'admin' %}">Dashbord <span class="sr-only">(current)</span></a>
                             
                         </li>
-    
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'api' %}">Api <span class="sr-only">(current)</span></a>
+                            
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'home' %}">Admin <span class="sr-only">(current)</span></a>
+                            
+                        </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="{% url 'logout'%}">Logout <span class="sr-only">(current)</span></a>
                         </li>
