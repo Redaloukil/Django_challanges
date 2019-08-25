@@ -1,4 +1,4 @@
-import settings
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path ,include
 from .views import home
@@ -32,9 +32,4 @@ urlpatterns = [
     
 ]
 
-if settings.DEBUG:
-    urlpatterns += patterns('',
-       url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.STATIC_ROOT,
-        }),
-)
+
