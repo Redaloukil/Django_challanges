@@ -20,7 +20,7 @@ urlpatterns = [
     
     
     ## Admin
-    path('admin/', admin.site.urls , name="admin"),
+    path('admin/', admin.site.urls),
     
     # Custom urls
     path('users/',include('users.urls')),
