@@ -1,9 +1,13 @@
-from rest_framework.serializers import ModelSerializer
-from ..models import Dog , Cat
+from rest_framework import serializers 
+from pets.models import Cat , Dog
 
+class DogSerializer(serializers.ModelSerializer):
+    class Meta :
+        model = Dog
+        fields = '__all__'
 
-class DogSerializer(ModelSerializer):
-    pass
-
-class CatSerilizer(ModelSerializer):
-    pass
+class CatSerializer(serializers.ModelSerializer):
+    class Meta :
+        model = Cat
+        fields = '__all__'
+        
