@@ -14,7 +14,7 @@ This is an interview test application written using python django framework ,the
 
 ## Online platform
 
-<a href="https://youtu.be/cU8jZ9FtE8k">https://youtu.be/cU8jZ9FtE8k</a>
+<a href="http://redaloukil.pythonanywhere.com/">http://redaloukil.pythonanywhere.com/</a>
 
 
 
